@@ -5,6 +5,7 @@ function preload() {
   // logoImg = loadImage('glowdoodle-logo.jpg');
 }
 function setup() {
+  pixelDensity(3.0);
   mainCanvas = createCanvas(windowWidth, windowHeight);
   capture = createCapture({
     video: {
