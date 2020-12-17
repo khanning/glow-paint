@@ -1,0 +1,18 @@
+body {
+  margin: 0;
+  background-color: black;
+  overflow: hidden;
+}
+
+button {
+  user-select: none;
+}
+
+#tools {
+  font-size: 16px;
+  width: 100%;
+  height: 50px;
+  background-color: white;
+  position: absolute;
+  bottom: 0;
+}
