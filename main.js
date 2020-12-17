@@ -2,14 +2,30 @@ let capture, mainCanvas;
 let startScreen = true;
 let timerInterval = null;
 
+let capturing = false;
+
+// let webcamIds = [];
+
 function preload() {
   // logoImg = loadImage('glowdoodle-logo.jpg');
 }
 function setup() {
-  const captureButton = document.querySelector('#capture');
-  captureButton.onpointerdown = startCapture;
-  captureButton.onpointerup = stopCapture;
-  captureButton.ontouchend = stopCapture;
+
+    // navigator.mediaDevices.enumerateDevices()
+    // .then(devices => {
+        // // let videoDevices = devices.filter(dev => dev.kind === 'videoinput');
+        // devices.forEach(dev => {
+            // if (dev.kind === 'videoinput') {
+                // webcamIds.push(dev.deviceId);
+            // }
+        // });
+        // console.log(webcamIds);
+    // });
+
+    const captureButton = document.querySelector('#capture');
+    captureButton.onpointerdown = startCapture;
+    captureButton.onpointerup = stopCapture;
+    captureButton.ontouchend = stopCapture;
 
   // pixelDensity(displayDensity()/2);
   // console.log(pixelDensity());
@@ -29,7 +45,7 @@ function setup() {
 }
 
 function draw() {
-  if (startScreen) {
+  if (!capturing) {
     imageMode(CENTER);
     // image(logoImg, width / 2, logoImg.height / 2);
     textAlign(CENTER);
@@ -41,8 +57,8 @@ function draw() {
   } else {
     imageMode(CORNER);
     blendMode(LIGHTEST);
-    // scale(1, 1);
-    // translate(-width, 0);
+    scale(-1, 1);
+    translate(-width, 0);
     if (width != capture.width || height != capture.height) {
         let c = capture.get((capture.width-capture.height)/2, 0, height, height);
         image(c, 0, 0);
@@ -53,7 +69,10 @@ function draw() {
 }
 
 function startTimed() {
-    if (timerInterval) return;
+    if (timerInterval) {
+        stopCapture();
+        return;
+    }
     const dur = document.querySelector('#duration').value;
     startCapture();
     timerInterval = setTimeout(stopCapture, dur*1000);
@@ -64,12 +83,17 @@ function clearScreen() {
 }
 
 function startCapture() {
-    startScreen = false;
-
+    // startScreen = false;
+    capturing = true;
+    document.querySelector('#start').innerHTML = 'Stop';
+    document.querySelector('#settings').style.display = 'none';
 }
 
 function stopCapture() {
-    startScreen = true;
+    // startScreen = true;
+    capturing = false;
+    document.querySelector('#start').innerHTML = 'Capture';
+    document.querySelector('#settings').style.display = 'inline';
     if (timerInterval) {
         clearTimeout(timerInterval);
         timerInterval = null;
@@ -78,6 +102,23 @@ function stopCapture() {
 
 function save() {
     save('test', 'png');
+}
+
+function keyPressed() {
+    switch (key) {
+        case ' ':
+            startCapture();
+            break;
+        case 'c':
+            clearScreen();
+            break;
+    }
+}
+
+function keyReleased() {
+    if (key === ' ') {
+        stopCapture();
+    }
 }
 
 // function mousePressed(){

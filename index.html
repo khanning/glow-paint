@@ -3,7 +3,7 @@
   <script src="p5.min.js"></script>
   <script src="main.js"></script>
   <link rel="stylesheet" href="main.css" />
-  <meta name="viewport" content="width=device-width, user-scalable=no" />
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1" />
 </head>
 <body>
   <main></main>
@@ -12,7 +12,7 @@
     <button id="save" onclick="save()">Save</button>
     <button id="capture">+</button>
     <span id="capture-for">
-      Capture for <input id="duration" type="text" value="10" size=3 /> seconds <button onclick="startTimed()" id="start">Start</button>
+      <button onclick="startTimed()" id="start">Capture</button><span id="settings"> for <input id="duration" type="text" value="10" size=3 /> secs</span>
     </span>
   </div>
 </body>
