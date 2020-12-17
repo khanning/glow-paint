@@ -6,6 +6,7 @@ function preload() {
   // logoImg = loadImage('glowdoodle-logo.jpg');
 }
 function setup() {
+<<<<<<< HEAD
 
   const captureButton = document.querySelector('#capture');
   captureButton.onpointerdown = startCapture;
@@ -16,6 +17,9 @@ function setup() {
   // console.log(pixelDensity());
   pixelDensity(1);
     // console.log(pixelDensity());
+=======
+  pixelDensity(3.0);
+>>>>>>> 34320d1ff3a45a4d933a3d42142f432cf7b04058
   mainCanvas = createCanvas(windowWidth, windowHeight);
   capture = createCapture({
     video: {
