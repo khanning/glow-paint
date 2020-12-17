@@ -9,9 +9,11 @@
   <main></main>
   <div id="tools">
     <button id="clear" onclick="clearScreen()">Clear</button>
-    <button id="capture">+</button>
-    Capture for <input id="duration" type="text" value="10" size=10 /> second <button onclick="startTimed()" id="start">Start</button>
     <button id="save" onclick="save()">Save</button>
+    <button id="capture">+</button>
+    <span id="capture-for">
+      Capture for <input id="duration" type="text" value="10" size=3 /> seconds <button onclick="startTimed()" id="start">Start</button>
+    </span>
   </div>
 </body>
 </html>
